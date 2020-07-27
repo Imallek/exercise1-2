@@ -5,17 +5,20 @@
 }
 
 .inputsizer {
+  order: 2;
   display: inline-grid;
   vertical-align: top;
+  border-radius: 5px;
   -webkit-box-align: center;
   align-items: center;
   position: relative;
   border: solid 1px;
   padding: 0.25em 0.5em;
   margin: 5px;
+  background: #0b0f2f;
 }
 .inputsizer.stacked {
-  padding: 0.5em;
+  padding: 1.5em;
   -webkit-box-align: stretch;
   align-items: stretch;
 }
@@ -27,6 +30,7 @@
 .inputsizer::after,
 .inputsizer input,
 .inputsizer textarea {
+  color: white;
   width: auto;
   min-width: 1em;
   grid-area: 1 / 2;
@@ -49,11 +53,12 @@
   white-space: pre-wrap;
 }
 .inputsizer:focus-within {
-  outline: solid 1px blue;
+  border-color: rgb(26, 117, 255);
 }
-.inputsizer:focus-within > span {
-  color: blue;
+.inputsizer:focus-within + .label {
+  color: white;
 }
+
 .inputsizer:focus-within textarea:focus,
 .inputsizer:focus-within input:focus {
   outline: none;
@@ -62,7 +67,7 @@
   width: 20px;
   height: 20px;
   border-radius: 100px;
-  background-color: black;
+  border: 1px solid rgb(90, 88, 88);
   padding: 15px;
   display: flex;
   align-content: center;
@@ -70,18 +75,20 @@
   color: white;
 }
 .line {
+  border: 1px solid rgb(90, 88, 88);
   width: 2px;
   height: 100%;
-  background-color: black;
   align-self: center;
   margin: 5px 0;
 }
 
 .touched {
-  background-color: green;
+  border: none;
+  background-color: rgb(26, 117, 255);
 }
 .container {
   display: flex;
+  margin-left: -150px;
 }
 .progress {
   display: flex;
@@ -90,4 +97,13 @@
 }
 .inputFields {
   display: flex;
+  width: 50vw;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #000313;
+}
+.label {
+  order: 1;
+  padding: 0.3rem 1.2rem 0.5rem 0.5rem;
+  color: rgb(102, 102, 102);
 }

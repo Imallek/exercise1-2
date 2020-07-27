@@ -1,6 +1,7 @@
 import React from "react";
 import FormElement from "../components/formElement";
 import SubmitButton from "../components/button";
+import styles from "./../styles/form.module.css";
 
 class Form extends React.Component {
   constructor(props) {
@@ -34,18 +35,6 @@ class Form extends React.Component {
       },
     };
   }
-
-  check = (event) => {
-    // selfReference.current.parentNode.dataset.value =
-    // selfReference.current.value;
-    // let id = event.target.id;
-    // console.log(id);
-    // this.state.formFields[
-    //   id
-    // ].current.parentNode.dataset.value = this.state.formFields[
-    //   id
-    // ].current.value;
-  };
 
   changeListener = (event) => {
     console.log(event.target.value);
@@ -115,14 +104,14 @@ class Form extends React.Component {
     });
 
     return (
-      <>
+      <div className={styles.main}>
         <form onSubmit={(e) => this.formSubmitHandler(e)}>
           {allFormFields}
           <SubmitButton type="submit" form="form1" value="Submit">
             SUBMIT
           </SubmitButton>
         </form>
-      </>
+      </div>
     );
   }
 }

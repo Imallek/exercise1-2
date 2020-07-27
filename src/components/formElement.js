@@ -9,13 +9,10 @@ const FormElement = ({ id, data, changeListener, focusListener, addRef }) => {
   return (
     <div className={styles.container}>
       <div className={styles.progress}>
-        <div className={circleStyles}>
-          <CheckMark />
-        </div>
+        <div className={circleStyles}>{touched ? <CheckMark /> : ""}</div>
         <div className={lineStyles}></div>
       </div>
       <div className={styles.inputFields} key={`field-${id}`}>
-        <label htmlFor={id}>{data.name}</label>
         <label className={[styles.inputsizer, styles.stacked].join(" ")}>
           <textarea
             ref={data.selfReference}
@@ -26,6 +23,9 @@ const FormElement = ({ id, data, changeListener, focusListener, addRef }) => {
             onChange={(e) => changeListener(e)}
             rows="1"
           ></textarea>
+        </label>
+        <label className={styles.label} htmlFor={id}>
+          {data.name}
         </label>
       </div>
     </div>
