@@ -1,0 +1,33 @@
+.toast {
+  position: absolute;
+  height: 60px;
+  padding: 20px;
+  top: 15px;
+  right: 8px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 15px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 15px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}

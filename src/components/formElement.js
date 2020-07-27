@@ -2,10 +2,10 @@ import React from "react";
 import styles from "../styles/formElement.module.css";
 import { ReactComponent as CheckMark } from "./../styles/check.svg";
 
-const FormElement = ({ id, data, changeListener, focusListener, addRef }) => {
+const FormElement = ({ id, data, changeListener, focusListener, position }) => {
   let touched = data.pristine ? "" : styles.touched;
   let circleStyles = [styles.circle, touched].join(" ");
-  let lineStyles = [styles.line, touched].join(" ");
+  let lineStyles = position ? [styles.line, touched, "line"].join(" ") : "";
   return (
     <div className={styles.container}>
       <div className={styles.progress}>

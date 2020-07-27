@@ -2,11 +2,13 @@ import React from "react";
 import FormElement from "../components/formElement";
 import SubmitButton from "../components/button";
 import styles from "./../styles/form.module.css";
+import Toast from "../components/toast";
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showToast: false,
       formFields: {
         Examination: {
           name: "Examination",
@@ -31,13 +33,13 @@ class Form extends React.Component {
           value: "",
           pristine: true,
           selfReference: React.createRef(null),
+          lastItem: true,
         },
       },
     };
   }
 
   changeListener = (event) => {
-    console.log(event.target.value);
     let updatedForm = {
       ...this.state.formFields,
     };
@@ -78,9 +80,13 @@ class Form extends React.Component {
         ""
       );
     }
-
+    this.setState({ showToast: true });
     console.log(inputData);
   }
+
+  toastHandler = () => {
+    this.setState({ showToast: false });
+  };
 
   render() {
     const formElementsArray = [];
@@ -91,7 +97,7 @@ class Form extends React.Component {
       });
     }
 
-    let allFormFields = formElementsArray.map((item) => {
+    let allFormFields = formElementsArray.map((item, index, array) => {
       return (
         <FormElement
           changeListener={this.changeListener}
@@ -99,12 +105,22 @@ class Form extends React.Component {
           key={item.id}
           id={item.id}
           data={item.config}
+          position={index !== array.length - 1}
         />
       );
     });
 
+    let toast = null;
+    if (this.state.showToast) {
+      toast = (
+        <Toast handler={this.toastHandler}>
+          Your report has been successfully submitted
+        </Toast>
+      );
+    }
     return (
       <div className={styles.main}>
+        {toast}
         <form onSubmit={(e) => this.formSubmitHandler(e)}>
           {allFormFields}
           <div className={styles.submitButton}>
