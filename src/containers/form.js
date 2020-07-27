@@ -7,10 +7,14 @@ class Form extends React.Component {
     super(props);
     this.state = {
       formFields: {
-        Examination: { name: "Examination", value: "" },
-        ClinicalHistory: { name: "Clinical History", value: "" },
-        Technique: { name: "Technique", value: "" },
-        Impressions: { name: "Impressions", value: "" },
+        Examination: { name: "Examination", value: "", pristine: true },
+        ClinicalHistory: {
+          name: "Clinical History",
+          value: "",
+          pristine: true,
+        },
+        Technique: { name: "Technique", value: "", pristine: true },
+        Impressions: { name: "Impressions", value: "", pristine: true },
       },
     };
   }
@@ -23,6 +27,21 @@ class Form extends React.Component {
     let fieldId = event.target.id;
     let updatedField = { ...this.state.formFields[fieldId] };
     updatedField.value = event.target.value;
+
+    updatedForm[fieldId] = updatedField;
+    this.setState({
+      formFields: updatedForm,
+    });
+  };
+
+  focusListener = (event) => {
+    let updatedForm = {
+      ...this.state.formFields,
+    };
+
+    let fieldId = event.target.id;
+    let updatedField = { ...this.state.formFields[fieldId] };
+    updatedField.pristine = false;
 
     updatedForm[fieldId] = updatedField;
     this.setState({
@@ -53,6 +72,7 @@ class Form extends React.Component {
       return (
         <FormElement
           changeListener={this.changeListener}
+          focusListener={this.focusListener}
           key={item.id}
           id={item.id}
           data={item.config}

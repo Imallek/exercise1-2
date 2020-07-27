@@ -1,0 +1,19 @@
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: black;
+}
+.line {
+  width: 200px;
+  height: 2px;
+  background-color: black;
+}
+
+.touched {
+  background-color: green;
+}
+
+.textarea {
+  resize: none;
+}
