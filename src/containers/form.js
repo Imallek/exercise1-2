@@ -1,5 +1,5 @@
 import React from "react";
-import FormElement from "./formElement";
+import FormElement from "../components/formElement";
 
 class Form extends React.Component {
   constructor(props) {
