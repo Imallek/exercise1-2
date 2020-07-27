@@ -14,6 +14,63 @@
   background-color: green;
 }
 
-.textarea {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.inputsizer {
+  display: inline-grid;
+  vertical-align: top;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  border: solid 1px;
+  padding: 0.25em 0.5em;
+  margin: 5px;
+}
+.inputsizer.stacked {
+  padding: 0.5em;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+}
+.inputsizer.stacked::after,
+.inputsizer.stacked input,
+.inputsizer.stacked textarea {
+  grid-area: 2 / 1;
+}
+.inputsizer::after,
+.inputsizer input,
+.inputsizer textarea {
+  width: auto;
+  min-width: 1em;
+  grid-area: 1 / 2;
+  font: inherit;
+  padding: 0.25em;
+  margin: 0;
   resize: none;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+.inputsizer span {
+  padding: 0.25em;
+}
+.inputsizer::after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre-wrap;
+}
+.inputsizer:focus-within {
+  outline: solid 1px blue;
+}
+.inputsizer:focus-within > span {
+  color: blue;
+}
+.inputsizer:focus-within textarea:focus,
+.inputsizer:focus-within input:focus {
+  outline: none;
 }

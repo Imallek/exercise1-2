@@ -7,19 +7,48 @@ class Form extends React.Component {
     super(props);
     this.state = {
       formFields: {
-        Examination: { name: "Examination", value: "", pristine: true },
+        Examination: {
+          name: "Examination",
+          value: "",
+          pristine: true,
+          selfReference: React.createRef(null),
+        },
         ClinicalHistory: {
           name: "Clinical History",
           value: "",
           pristine: true,
+          selfReference: React.createRef(null),
         },
-        Technique: { name: "Technique", value: "", pristine: true },
-        Impressions: { name: "Impressions", value: "", pristine: true },
+        Technique: {
+          name: "Technique",
+          value: "",
+          pristine: true,
+          selfReference: React.createRef(null),
+        },
+        Impressions: {
+          name: "Impressions",
+          value: "",
+          pristine: true,
+          selfReference: React.createRef(null),
+        },
       },
     };
   }
 
+  check = (event) => {
+    // selfReference.current.parentNode.dataset.value =
+    // selfReference.current.value;
+    // let id = event.target.id;
+    // console.log(id);
+    // this.state.formFields[
+    //   id
+    // ].current.parentNode.dataset.value = this.state.formFields[
+    //   id
+    // ].current.value;
+  };
+
   changeListener = (event) => {
+    console.log(event.target.value);
     let updatedForm = {
       ...this.state.formFields,
     };
@@ -27,6 +56,8 @@ class Form extends React.Component {
     let fieldId = event.target.id;
     let updatedField = { ...this.state.formFields[fieldId] };
     updatedField.value = event.target.value;
+    updatedField.selfReference.current.parentNode.dataset.value =
+      updatedField.selfReference.current.value;
 
     updatedForm[fieldId] = updatedField;
     this.setState({
@@ -53,7 +84,10 @@ class Form extends React.Component {
     event.preventDefault();
     let inputData = {};
     for (let key in this.state.formFields) {
-      inputData[key] = this.state.formFields[key].value;
+      inputData[key] = this.state.formFields[key].value.replace(
+        /(\r\n|\n|\r)/gm,
+        ""
+      );
     }
 
     console.log(inputData);
