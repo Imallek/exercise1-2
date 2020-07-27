@@ -107,9 +107,11 @@ class Form extends React.Component {
       <div className={styles.main}>
         <form onSubmit={(e) => this.formSubmitHandler(e)}>
           {allFormFields}
-          <SubmitButton type="submit" form="form1" value="Submit">
-            SUBMIT
-          </SubmitButton>
+          <div className={styles.submitButton}>
+            <SubmitButton type="submit" value="Submit">
+              SUBMIT
+            </SubmitButton>
+          </div>
         </form>
       </div>
     );
