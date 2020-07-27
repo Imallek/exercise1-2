@@ -1,13 +1,20 @@
 import React from "react";
 import styles from "../styles/formElement.module.css";
+import { ReactComponent as CheckMark } from "./../styles/check.svg";
 
 const FormElement = ({ id, data, changeListener, focusListener, addRef }) => {
   let touched = data.pristine ? "" : styles.touched;
+  let circleStyles = [styles.circle, touched].join(" ");
+  let lineStyles = [styles.line, touched].join(" ");
   return (
-    <div>
-      <div className={[styles.circle, touched].join(" ")}></div>
-      <div className={[styles.line, touched].join(" ")}></div>
-      <div className="field" key={`field-${id}`}>
+    <div className={styles.container}>
+      <div className={styles.progress}>
+        <div className={circleStyles}>
+          <CheckMark />
+        </div>
+        <div className={lineStyles}></div>
+      </div>
+      <div className={styles.inputFields} key={`field-${id}`}>
         <label htmlFor={id}>{data.name}</label>
         <label className={[styles.inputsizer, styles.stacked].join(" ")}>
           <textarea
