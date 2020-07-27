@@ -1,5 +1,6 @@
 import React from "react";
 import FormElement from "../components/formElement";
+import SubmitButton from "../components/button";
 
 class Form extends React.Component {
   constructor(props) {
@@ -29,6 +30,16 @@ class Form extends React.Component {
     });
   };
 
+  formSubmitHandler(event) {
+    event.preventDefault();
+    let inputData = {};
+    for (let key in this.state.formFields) {
+      inputData[key] = this.state.formFields[key].value;
+    }
+
+    console.log(inputData);
+  }
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.formFields) {
@@ -38,18 +49,25 @@ class Form extends React.Component {
       });
     }
 
+    let allFormFields = formElementsArray.map((item) => {
+      return (
+        <FormElement
+          changeListener={this.changeListener}
+          key={item.id}
+          id={item.id}
+          data={item.config}
+        />
+      );
+    });
+
     return (
       <>
-        {formElementsArray.map((item) => {
-          return (
-            <FormElement
-              changeListener={this.changeListener}
-              key={item.id}
-              id={item.id}
-              data={item.config}
-            />
-          );
-        })}
+        <form onSubmit={(e) => this.formSubmitHandler(e)}>
+          {allFormFields}
+          <SubmitButton type="submit" form="form1" value="Submit">
+            SUBMIT
+          </SubmitButton>
+        </form>
       </>
     );
   }
