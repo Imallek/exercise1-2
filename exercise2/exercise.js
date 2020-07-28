@@ -20,7 +20,7 @@ function makeRequest(payload) {
   // let's pretend this makes a request, and logs the payload/time of request
   console.log({
     data: payload,
-    time: Math.round((new Date().getTime() - now) / 1000),
+    time: Math.round((new Date().getTime() - now) / 10),
   });
 }
 
