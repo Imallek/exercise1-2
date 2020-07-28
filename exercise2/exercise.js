@@ -29,6 +29,7 @@ const throttle = (callback, delay) => {
   let sendImmediate = true;
   let requestsArray = [];
   let timer = null;
+  now = new Date().getTime();
   return function fn(payload) {
     if (sendImmediate) {
       requestsArray.push(payload);
