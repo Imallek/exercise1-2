@@ -77,7 +77,7 @@ class Form extends React.Component {
     for (let key in this.state.formFields) {
       inputData[key] = this.state.formFields[key].value.replace(
         /(\r\n|\n|\r)/gm,
-        ""
+        " "
       );
     }
     this.setState({ showToast: true });
